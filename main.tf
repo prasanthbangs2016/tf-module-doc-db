@@ -25,6 +25,3 @@ resource "aws_docdb_cluster" "docdb" {
 #  }
 #}
 
-output "out" {
-  value = module.vpc.out
-}
