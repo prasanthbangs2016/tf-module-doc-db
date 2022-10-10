@@ -1,6 +1,6 @@
 resource "aws_docdb_cluster" "docdb" {
   #cluster-name
-  cluster_identifier      = "Roboshop-${var.env}"
+  cluster_identifier      = "roboshop-${var.env}"
   engine                  = "docdb"
   engine_version          = var.engine_version
   master_username         = local.username
