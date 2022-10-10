@@ -32,8 +32,8 @@ resource "aws_docdb_subnet_group" "main" {
 
 resource "aws_docdb_cluster_parameter_group" "main" {
   family      = "docdb4.0"
-  name        = "Roboshop-${var.env}"
-  description = "Roboshop-${var.env}"
+  name        = "roboshop-${var.env}"
+  description = "roboshop-${var.env}"
 
 #  parameter {
 #    name  = "tls"
@@ -44,9 +44,9 @@ resource "aws_docdb_cluster_parameter_group" "main" {
 #creating security group for db
 
 resource "aws_security_group" "docdb" {
-  name        = "Roboshop-${var.env}-docdb"
-  description = "Roboshop-${var.env}-docdb"
-  vpc_id      = var.vpc_id
+  name        = "roboshop-${var.env}-docdb"
+  description = "roboshop-${var.env}-docdb"
+  vpc_id      = local.vpc_id
 
   ingress {
     description      = "docdb"
