@@ -46,7 +46,7 @@ resource "aws_docdb_cluster_parameter_group" "main" {
 resource "aws_security_group" "docdb" {
   name        = "roboshop-${var.env}-docdb"
   description = "roboshop-${var.env}-docdb"
-  vpc_id      = local.vpc_id.id
+  vpc_id      = module.vpc.id
 
   ingress {
     description      = "docdb"
