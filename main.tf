@@ -7,7 +7,7 @@ resource "aws_docdb_cluster" "docdb" {
   master_password         = local.password
 #  backup_retention_period = 5
 #  preferred_backup_window = "07:00-09:00"
-  #when u try to delete cluster it will delete automatically  with kind of back up
+  #when u try to delete cluster it will delete automatically  with kind of no back up
   skip_final_snapshot     = true
   db_subnet_group_name = aws_docdb_subnet_group.main.name
   db_cluster_parameter_group_name = aws_docdb_cluster_parameter_group.main.name
@@ -16,6 +16,13 @@ resource "aws_docdb_cluster" "docdb" {
   tags = {
     Name = "Roboshop-${var.env}"
   }
+}
+
+resource "aws_docdb_cluster_instance" "cluster_instances" {
+  count              = var.instance_count
+  identifier         = "docdb-cluster-demo-${count.index}"
+  cluster_identifier = aws_docdb_cluster.docdb.id
+  instance_class     = var.instance_class
 }
 #creating cluster in db subnets
 
@@ -46,7 +53,7 @@ resource "aws_docdb_cluster_parameter_group" "main" {
 resource "aws_security_group" "docdb" {
   name        = "roboshop-${var.env}-docdb"
   description = "roboshop-${var.env}-docdb"
-  vpc_id      = local.vpc_id.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     description      = "docdb"
@@ -62,4 +69,6 @@ resource "aws_security_group" "docdb" {
     Name = "Roboshop-${var.env}-docdb"
   }
 }
+
+
 
