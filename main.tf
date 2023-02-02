@@ -60,7 +60,7 @@ resource "aws_security_group" "docdb" {
     from_port        = 27017
     to_port          = 27017
     protocol         = "tcp"
-    cidr_blocks      = [var.vpc_cidr_block]
+    cidr_blocks      = [var.vpc_cidr_block,var.WORKSTATION_IP]
 
   }
 
