@@ -71,6 +71,7 @@ resource "aws_security_group" "docdb" {
 }
 
 resource "null_resource" "mongo_schema_apply" {
+  depends_on = [aws_docdb_cluster.docdb, aws_docdb_cluster_instance.cluster_instances]
   provisioner "local-exec" {
     command = <<EOF
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
