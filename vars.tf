@@ -6,3 +6,4 @@ variable "vpc_cidr_block" {}
 variable "instance_count" {}
 variable "instance_class" {}
 variable "WORKSTATION_IP" {}
+
