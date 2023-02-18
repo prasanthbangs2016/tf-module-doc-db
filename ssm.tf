@@ -10,3 +10,5 @@ resource "aws_ssm_parameter" "docdb-url-users" {
   type  = "String"
   value = "mongodb://${local.username}:${local.password}@${aws_docdb_cluster.docdb.endpoint}:27017/users?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 }
+
+
